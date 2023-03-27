@@ -6,8 +6,9 @@ public class CameraFollow : MonoBehaviour
 {
     [SerializeField] private Transform _target;
 
-    private float _smoothSpeed = 0.05f;
+    private float _smoothSpeed = 0.07f;
     private Vector3 _offset = new Vector3(0, 0, -10);
+    private Vector3 velocity = Vector3.zero;
 
     [SerializeField] private float leftLimit;
     [SerializeField] private float rightLimit;
@@ -17,9 +18,9 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        Vector3 desiredPosition = _target.position + _offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, _smoothSpeed);
-        transform.position = smoothedPosition;
+        Vector3 targetPosition = _target.position + _offset;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, _smoothSpeed);
+        
 
         transform.position = new Vector3(
             Mathf.Clamp(transform.position.x, leftLimit, rightLimit),
