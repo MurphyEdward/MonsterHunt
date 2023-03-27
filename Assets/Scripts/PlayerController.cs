@@ -61,9 +61,7 @@ public class PlayerController : MonoBehaviour
         if (!_isFacingLeft && _horizontalInput < 0f || _isFacingLeft && _horizontalInput > 0f)
         {
             _isFacingLeft = !_isFacingLeft;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
+            transform.Rotate(0, 180, 0);
         }
     }
 
