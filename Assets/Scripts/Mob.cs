@@ -10,9 +10,12 @@ public class Mob : MonoBehaviour
     private bool _isFacingLeft;
     private Rigidbody2D _rigidbody;
 
+    private int _HP = 100;
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -42,5 +45,11 @@ public class Mob : MonoBehaviour
             _speed *= -1;
             _isFacingLeft = !_isFacingLeft;
             transform.Rotate(0, 180, 0);
+    }
+
+    public void takeDamage(int damage)
+    {
+        if (damage >= _HP) Destroy(gameObject);
+        _HP -= damage;
     }
 }

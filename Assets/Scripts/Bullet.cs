@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Mob mob = collision.GetComponent<Mob>();
+        if (mob != null) mob.takeDamage(25);
         Destroy(gameObject);
     }
 }
