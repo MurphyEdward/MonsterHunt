@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class MobSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField]private GameObject _mobPref;
+
+
+    private void Start()
     {
-        
+        StartCoroutine(Timer());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator Timer()
     {
-        
+
+        for (int iterationCount = 0; true; iterationCount++)
+        {                     
+            Instantiate(_mobPref, transform);
+            yield return new WaitForSeconds(30 - iterationCount);
+        }
     }
 }
