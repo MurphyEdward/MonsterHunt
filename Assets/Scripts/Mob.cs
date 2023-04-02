@@ -10,6 +10,9 @@ public class Mob : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private float _target;
 
+    [SerializeField]private static int s_damage = 50;
+    public static int Damage { get { return s_damage; } set { s_damage = value; } }
+
     private void Start()
     {
         
@@ -30,9 +33,7 @@ public class Mob : MonoBehaviour
 
     private void MoveCharacter()
     {
-        bool b1 = transform.position.x + 1 < _crystal.transform.position.x &&
-            transform.position.x - 1 > _crystal.transform.position.x;
-        Debug.Log(transform.position.x + 1 < _crystal.transform.position.x);
+        
         
         if (transform.position.x + 1 > _crystal.transform.position.x &&
             transform.position.x - 1 < _crystal.transform.position.x)
