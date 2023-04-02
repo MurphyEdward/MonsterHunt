@@ -13,9 +13,6 @@ public class PlayerController : MonoBehaviour
     private float _horizontalInput;
     private bool _isFacingLeft;
 
-    private bool _isGrounded = true;
-
-    private Vector2 _movement;
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -58,7 +55,8 @@ public class PlayerController : MonoBehaviour
 
     private void Flip()
     {
-        if (!_isFacingLeft && _horizontalInput < 0f || _isFacingLeft && _horizontalInput > 0f)
+        float angle = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
+        if (!_isFacingLeft && angle < 0 || _isFacingLeft && angle > 0)
         {
             _isFacingLeft = !_isFacingLeft;
             transform.Rotate(0, 180, 0);

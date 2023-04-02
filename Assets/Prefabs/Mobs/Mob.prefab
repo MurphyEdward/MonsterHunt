@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1458351608082225269}
   - component: {fileID: 1458351608082225268}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,8 @@ GameObject:
   - component: {fileID: 1458351608192604734}
   - component: {fileID: 1458351608192604733}
   - component: {fileID: 1458351608192604732}
-  m_Layer: 0
+  - component: {fileID: -1945567930452150265}
+  m_Layer: 7
   m_Name: Mob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,5 +232,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45856c6a066e9ed49ac83eb0ba7468ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
-  _player: {fileID: 0}
+  _speed: 30
+  _crystal: {fileID: 0}
+--- !u!114 &-1945567930452150265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458351608436810023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 964aa00aa8b9f594fa41419184bcf980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

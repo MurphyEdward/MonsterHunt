@@ -5,30 +5,24 @@ using UnityEngine;
 public class Mob : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private Transform _player;
+    [SerializeField] private GameObject _crystal;
 
-    private bool _isFacingLeft;
     private Rigidbody2D _rigidbody;
-
-    private int _HP = 100;
+    private float _target;
 
     private void Start()
     {
+        
+        _crystal = GameObject.Find("Crystal");
         _rigidbody = GetComponent<Rigidbody2D>();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        if((transform.position.x < _player.position.x && _isFacingLeft) || (transform.position.x > _player.position.x && !_isFacingLeft))
+        _target = (_crystal.transform.position.x - transform.position.x);
+        if (transform.position.x > _crystal.transform.position.x)
         {
-            Flip();
+            transform.Rotate(0, 180, 0);
         }
 
-
     }
+
     private void FixedUpdate()
     {
         MoveCharacter();
@@ -36,20 +30,16 @@ public class Mob : MonoBehaviour
 
     private void MoveCharacter()
     {
+        bool b1 = transform.position.x + 1 < _crystal.transform.position.x &&
+            transform.position.x - 1 > _crystal.transform.position.x;
+        Debug.Log(transform.position.x + 1 < _crystal.transform.position.x);
         
-        _rigidbody.velocity = new Vector2(_speed, _rigidbody.velocity.y);
-    }
-
-    private void Flip()
-    {
-            _speed *= -1;
-            _isFacingLeft = !_isFacingLeft;
-            transform.Rotate(0, 180, 0);
-    }
-
-    public void takeDamage(int damage)
-    {
-        if (damage >= _HP) Destroy(gameObject);
-        _HP -= damage;
+        if (transform.position.x + 1 > _crystal.transform.position.x &&
+            transform.position.x - 1 < _crystal.transform.position.x)
+        {
+            _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
+            return;
+        }
+        _rigidbody.velocity = new Vector2(_target * _speed / 100, _rigidbody.velocity.y);
     }
 }

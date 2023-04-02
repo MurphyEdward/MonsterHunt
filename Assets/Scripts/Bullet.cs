@@ -5,17 +5,20 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    private float speed = 20f;
+    private float _speed = 20f;
+    private int _damage = 25;
+
+
     [SerializeField]private Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = transform.right * speed;
+        rb.velocity = transform.right * _speed;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Mob mob = collision.GetComponent<Mob>();
-        if (mob != null) mob.takeDamage(25);
+        Health health = collision.GetComponent<Health>();
+        if (health != null) health.TakeDamage(_damage);
         Destroy(gameObject);
     }
 }
