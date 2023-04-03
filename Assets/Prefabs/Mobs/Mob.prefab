@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _crystal: {fileID: 0}
+  _target: {fileID: 7025689070573337889, guid: eb02adf359040e64b8734975c6de2629, type: 3}
 --- !u!114 &-1945567930452150265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,4 +247,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100
-  _currentHealth: 100

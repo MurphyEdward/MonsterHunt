@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -8,8 +6,13 @@ public class Health : MonoBehaviour
     [SerializeField] private int _maxHealth = 100;
     public int MaxHealth { get { return _maxHealth; } set { _maxHealth = value; } }
 
-    [SerializeField] private int _currentHealth = 100;
+    private int _currentHealth;
     public int CurrentHealth { get { return _currentHealth; } set { _maxHealth = value; } }
+
+    private void Awake()
+    {
+        _currentHealth = _maxHealth;
+    }
 
     public void TakeDamage(int damage)
     {
@@ -24,7 +27,6 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-       // Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
    

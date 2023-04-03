@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47a0bf11f9276844a2123df8d3468d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mobPref: {fileID: 1458351608436810023, guid: 68ac1fd7f28598244800b2fad38a621c, type: 3}
+  _mobPrefab: {fileID: 1458351608436810023, guid: 68ac1fd7f28598244800b2fad38a621c, type: 3}
+  _startSpawnDelay: 30

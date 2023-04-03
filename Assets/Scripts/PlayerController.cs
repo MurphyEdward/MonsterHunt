@@ -6,33 +6,32 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpPower;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform _groundCheck;
+    [SerializeField] private LayerMask _groundLayer;
 
     private Rigidbody2D _rigidbody;
     private float _horizontalInput;
     private bool _isFacingLeft;
 
-    private void Start()
+    private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
+    private void FixedUpdate()
+    {
+        MoveCharacter();
+    }
+    private void MoveCharacter()
+    {
+        _rigidbody.velocity = new Vector2(_horizontalInput * _speed, _rigidbody.velocity.y);
+    }
+
     private void Update()
     {
         _horizontalInput = Input.GetAxisRaw("Horizontal");
 
         Jump();
         Flip();
-    }
-
-    private void MoveCharacter()
-    {
-        _rigidbody.velocity = new Vector2(_horizontalInput * _speed, _rigidbody.velocity.y);
-    }
-
-    private bool IsGrounded()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
     private void Jump()
@@ -48,11 +47,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        MoveCharacter();
-    }
-
     private void Flip()
     {
         float angle = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x;
@@ -63,5 +57,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(_groundCheck.position, 0.2f, _groundLayer);
+    }
 }
 

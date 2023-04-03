@@ -4,26 +4,25 @@ using UnityEngine;
 
 public class Mob : MonoBehaviour
 {
+    [SerializeField] private static int _damage = 50;
     [SerializeField] private float _speed;
-    [SerializeField] private GameObject _crystal;
+    [SerializeField] private GameObject _target;
 
     private Rigidbody2D _rigidbody;
-    private float _target;
 
-    [SerializeField]private static int s_damage = 50;
-    public static int Damage { get { return s_damage; } set { s_damage = value; } }
+    public static int Damage { get { return _damage; } set { _damage = value; } }
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
 
     private void Start()
     {
-        
-        _crystal = GameObject.Find("Crystal");
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _target = (_crystal.transform.position.x - transform.position.x);
-        if (transform.position.x > _crystal.transform.position.x)
+        if (transform.position.x > _target.transform.position.x)
         {
             transform.Rotate(0, 180, 0);
         }
-
     }
 
     private void FixedUpdate()
@@ -33,14 +32,7 @@ public class Mob : MonoBehaviour
 
     private void MoveCharacter()
     {
-        
-        
-        if (transform.position.x + 1 > _crystal.transform.position.x &&
-            transform.position.x - 1 < _crystal.transform.position.x)
-        {
-            _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
-            return;
-        }
-        _rigidbody.velocity = new Vector2(_target * _speed / 100, _rigidbody.velocity.y);
+        Vector2 _distanceToTarget = _target.transform.position - transform.position;
+        _rigidbody.velocity = new Vector2(_distanceToTarget.normalized.x * _speed, _rigidbody.velocity.y);
     }
 }
