@@ -26,13 +26,14 @@ public class CrystalHealth : Health
         
         if (isMob)
         {
+            _crystal.MobsInCollider++;
             Debug.Log("COLLISION MOB!!!");
             if (_crystal.MobsInCollider == 1)
             {
                 StartCoroutine(DamageOverTime());
             }
 
-            _crystal.MobsInCollider++;
+            
         }
     }
 
