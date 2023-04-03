@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
 
     private float _speed = 20f;
     private int _damage = 25;
+    public int Damage { get { return _damage; } }
 
     private void Awake()
     {
