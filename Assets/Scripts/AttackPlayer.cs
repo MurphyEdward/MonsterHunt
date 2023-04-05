@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 public class AttackPlayer : MonoBehaviour
 {
     
 
-    [SerializeField]private PlayerController _target;
+    private PlayerController _target;
     private int _attackDelay = 2;
 
     [SerializeField] private Transform _shootPoint;
@@ -23,10 +24,10 @@ public class AttackPlayer : MonoBehaviour
 
     private IEnumerator Attack()
     {
-        while (true) {
+        while (_target.isActiveAndEnabled) {
             Shoot();
             
-            yield return new WaitForSeconds(_attackDelay);
+            yield return new WaitForSeconds(Random.Range(_attackDelay - 1, _attackDelay + 1));
         }
     }
 
@@ -39,9 +40,6 @@ public class AttackPlayer : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         _rotatePoint.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-
         Instantiate(_bulletPrefab, _shootPoint.position, _shootPoint.rotation);
-
-        
     }
 }

@@ -17,14 +17,20 @@ public class CameraFollow : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 targetPosition = _target.position + _offset;
-        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, _smoothSpeed);
-        
+        if (_target != null)
+        {
+            Vector3 targetPosition = _target.position + _offset;
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, _smoothSpeed);
 
-        transform.position = new Vector3(
+            transform.position = new Vector3(
             Mathf.Clamp(transform.position.x, _leftLimit, _rightLimit),
             Mathf.Clamp(transform.position.y, _downLimit, _upLimit),
-            transform.position.z );
+            transform.position.z);
+        }
+        
+        
+
+        
     }
 
     //private void OnDrawGizmos()

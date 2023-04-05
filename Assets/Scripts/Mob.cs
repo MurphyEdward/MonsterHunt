@@ -6,7 +6,7 @@ public class Mob : MonoBehaviour
 {
     [SerializeField] private static int _damage = 50;
     [SerializeField] private float _speed;
-    [SerializeField] private GameObject _target;
+    private Crystal _followTarget;
 
     private Rigidbody2D _rigidbody;
 
@@ -14,12 +14,13 @@ public class Mob : MonoBehaviour
 
     private void Awake()
     {
+        _followTarget = FindObjectOfType<Crystal>();
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
     {
-        if (transform.position.x > _target.transform.position.x)
+        if (transform.position.x > _followTarget.transform.position.x)
         {
             transform.Rotate(0, 180, 0);
         }
@@ -27,12 +28,12 @@ public class Mob : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveCharacter();
+        Move();
     }
 
-    private void MoveCharacter()
+    private void Move()
     {
-        Vector2 _distanceToTarget = _target.transform.position - transform.position;
+        Vector2 _distanceToTarget = _followTarget.transform.position - transform.position;
         _rigidbody.velocity = new Vector2(_distanceToTarget.normalized.x * _speed, _rigidbody.velocity.y);
     }
 }

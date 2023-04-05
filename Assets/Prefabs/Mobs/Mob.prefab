@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1458351608082225269}
   - component: {fileID: 1458351608082225268}
-  - component: {fileID: 765698881832230592}
+  - component: {fileID: 8890291917856838955}
   m_Layer: 7
   m_Name: Arm
   m_TagString: Untagged
@@ -117,7 +117,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &765698881832230592
+--- !u!114 &8890291917856838955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,9 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7807750db9239c242bbc04639e51dbd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 6084054051485081939, guid: 477dd6a8798c73b43a2f7571df85010f, type: 3}
   _shootPoint: {fileID: 2325749310596756698}
-  _bulletPrefab: {fileID: 3709809546309836603, guid: ea4c13e461a42f54490cae05deb40d7d, type: 3}
+  _bulletPrefab: {fileID: 9030591756809994254, guid: 0092fad777cbeed4fa7bcb270cdd2a54, type: 3}
   _rotatePoint: {fileID: 6875727237847841966}
 --- !u!1 &1458351608436810023
 GameObject:
@@ -282,7 +281,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
-  _target: {fileID: 7025689070573337889, guid: eb02adf359040e64b8734975c6de2629, type: 3}
 --- !u!114 &-1945567930452150265
 MonoBehaviour:
   m_ObjectHideFlags: 0

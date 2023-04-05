@@ -7,8 +7,8 @@ public class MobBullet : Bullet
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        bool isPlayer = collision.TryGetComponent<PlayerHealth>(out PlayerHealth health);
-        if (isPlayer) health.TakeDamage(Damage);
+        bool isPlayer = collision.TryGetComponent<PlayerHealth>(out PlayerHealth playerHealth);
+        if (isPlayer) playerHealth.TakeDamage(Damage);
 
         Destroy(gameObject);
     }
